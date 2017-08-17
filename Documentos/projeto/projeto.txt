@@ -1,4 +1,4 @@
-Justificativas
+
 
 
 ideias iniciais
@@ -25,22 +25,30 @@ projeto e objetivos
 	
 
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Justificativas
+	
+	
 A análise de sinais no domínio da frequência é uma ferramenta utilizada para interpretação de um sinal sob a visão de seu conteúdo espectral. Esta técnica é aplicada em áreas como filtragem de ruído, processamento de imagens e telecomunicações. Uma vantagem proporcionada pela técnica é a representação de uma informação periódica no domínio do tempo em poucos coeficientes no domínio da frequência. Entretanto, características não-periódicas num sinal, como por exemplo sinais de ocorrência estocástica ou com descontinuidades e singularidades, apresentam uma localização temporal que não é explicitada pela análise na frequência. As ferramentas de análise no domínio misto tempo-frequência permitem o tratamento desse tipo de informação. Uma ferramenta de destaque nas últimas duas décadas é a Transformada Wavelet.
 
 A Transformada Wavelet Contínua baseia-se na convolução de um sinal com uma forma de onda localizada no tempo (uma wavelet-mãe) para diferentes escalas. O resultado da aplicação da transformada é um escalograma que associa informações de localização com informações de dilatação da wavelet-mãe, que podem ser comparadas com uma escala no tempo e na frequência.
 
+<falar da transformada discreta>
 
+Aplicações em hardware possibilitam melhor desempenho quando comparadas com sua versão em software uma vez que utilizam recursos não-compartilhados e com um grau de abstração muito menor. Além disso, aplicações em hardware lançam mão de uma paralelização intrínseca da plataforma. Aplicações em tempo real são exemplos que fazem uso desse ganho de desempenho da implementação em hardware. Uma das possíveis formas de implementar um algoritmo em hardware é utilizando FPGAs (field-programmable gate array, ou arranjos de portas programáveis em campo). Estes são circuitos integrados programáveis em nível lógico por linguagens de descrição de hardware (HDL). FPGAs possibilitam um tempo de desenvolvimento menor quando comparado com hardware de aplicação específica em troca de menor otimização de recursos, o que é refletido em maior potência consumida e menor desempenho.
+
+Portanto, FPGAs são uma boa alternativa como ferramenta de hardware para implementação de um algoritmo de análise multi-resolução.
 	
-	
-	
-	
-
-A análise de sinais no domínio da frequência é uma ferramenta que possibilita a interpretação de um sinal numa escala útil para aplicações como filtragem de ruídos, processamento de imagens e 
-
-Este tipo de análise pode ser realizada com a Transformada de Fourier e suas variantes. 
-
-Entretanto, a análise no domínio da frequência, como a Transformada de Fourier e suas variantes, não se adaptam bem a descontinuidades e singularidades. Estes padrões requerem um grande número de coeficientes para sua representação na frequência enquanto sua localização no tempo é 
-
 
 - importância da análise tempo-frequência de sinais
 
@@ -49,3 +57,26 @@ Entretanto, a análise no domínio da frequência, como a Transformada de Fourie
 - FPGA como ferramenta de paralelização
 
 - processador wavelet já existente
+
+
+
+
+Revisão da Literatura
+<>
+
+
+Metodologia
+
+Apesar de possibilitar aplicações com alto grau de paralelismo, um mesmo projeto em hardware possui um grau de complexidade e tempo de desenvolvimento maior que sua versão em software. Portanto, todo bom projeto de hardware passa por uma fase de avaliação em software. Todos os algoritmos implementados neste projeto de mestrado serão implementados no software Matlab para sua avaliação e otimização. 
+
+Este trabalho será realizado utilizando uma placa FPGA Kintex-7 KC705 Evaluation Kit da fabricante Xilinx.  O FPGA é programado utilizando o software Vivado Design Suite, que é um ambiente integrado para desenvolvimento e simulação dos FPGAs da fabricante Xilinx através de lingaguens de descrição de hardware (HDL). Uma placa de aquisição de dados de alta performance FMC 150 está acoplada à placa FPGA para a digitalização de dados.
+
+
+<inserir diagrama de blocos da metodologia, com blocos contendo estudo da bibliografia, proposição de algoritmo, implementacao e testes em software, implementacao e testes em hardware, documentação>
+
+Um dos objetivos do trabalho é aumentar o escopo de projeto de um processador de wavelets implementado em FPGA em trabalhos anteriores.
+
+
+
+
+
