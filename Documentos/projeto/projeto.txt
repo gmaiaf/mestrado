@@ -1,0 +1,51 @@
+Justificativas
+
+
+ideias iniciais
+	- analise na frequencia é ferramenta tradicional
+	- aplicações em filtragem de ruído de sinal, processamento de imagens e telecomunicações
+	- vantagem de "compactar" muita informação no tempo numa faixa pequena de frequência (coeficientes)
+	- entretanto, descontinuidades e singularidades ocupam uma pequena faixa de tempo mas uma grande faixa de frequencia
+	- analise tempo-frequencia é uma alternativa que comporta melhor sinais com essa característica
+	- short-time fourier transform
+	- wavelet transform
+	
+falar da transformada wavelet
+	- apresentar sem formalismo
+	- apresentar equações para transformada discreta
+	- como usar para filtragem de ruído
+	- 
+
+fpga
+	- paralelização
+
+projeto e objetivos
+	- parametrizar processador de wavelet existente e udwt
+	- técnicas de filtragem - threshold mais comum
+	
+
+	
+A análise de sinais no domínio da frequência é uma ferramenta utilizada para interpretação de um sinal sob a visão de seu conteúdo espectral. Esta técnica é aplicada em áreas como filtragem de ruído, processamento de imagens e telecomunicações. Uma vantagem proporcionada pela técnica é a representação de uma informação periódica no domínio do tempo em poucos coeficientes no domínio da frequência. Entretanto, características não-periódicas num sinal, como por exemplo sinais de ocorrência estocástica ou com descontinuidades e singularidades, apresentam uma localização temporal que não é explicitada pela análise na frequência. As ferramentas de análise no domínio misto tempo-frequência permitem o tratamento desse tipo de informação. Uma ferramenta de destaque nas últimas duas décadas é a Transformada Wavelet.
+
+A Transformada Wavelet Contínua baseia-se na convolução de um sinal com uma forma de onda localizada no tempo (uma wavelet-mãe) para diferentes escalas. O resultado da aplicação da transformada é um escalograma que associa informações de localização com informações de dilatação da wavelet-mãe, que podem ser comparadas com uma escala no tempo e na frequência.
+
+
+	
+	
+	
+	
+
+A análise de sinais no domínio da frequência é uma ferramenta que possibilita a interpretação de um sinal numa escala útil para aplicações como filtragem de ruídos, processamento de imagens e 
+
+Este tipo de análise pode ser realizada com a Transformada de Fourier e suas variantes. 
+
+Entretanto, a análise no domínio da frequência, como a Transformada de Fourier e suas variantes, não se adaptam bem a descontinuidades e singularidades. Estes padrões requerem um grande número de coeficientes para sua representação na frequência enquanto sua localização no tempo é 
+
+
+- importância da análise tempo-frequência de sinais
+
+- custo computacional e possibilidade de paralelização
+
+- FPGA como ferramenta de paralelização
+
+- processador wavelet já existente
