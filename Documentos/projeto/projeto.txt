@@ -39,7 +39,7 @@ projeto e objetivos
 Justificativas
 	
 	
-A análise de sinais no domínio da frequência é uma ferramenta utilizada para interpretação de um sinal sob a visão de seu conteúdo espectral(?). Esta técnica é aplicada em áreas como filtragem de ruído, processamento de imagens e telecomunicações. Uma vantagem proporcionada pela técnica é a representação de uma informação periódica no domínio do tempo em poucos coeficientes no domínio da frequência. Entretanto, características não-periódicas num sinal, como por exemplo sinais de ocorrência estocástica ou com descontinuidades e singularidades, apresentam uma localização temporal que não é explicitada pela análise na frequência. As ferramentas de análise no domínio misto tempo-frequência permitem o tratamento desse tipo de informação. Uma ferramenta de destaque nas últimas duas décadas é a Transformada Wavelet.
+A análise de sinais no domínio da frequência é uma ferramenta utilizada para interpretação de um sinal sob a visão de seu conteúdo espectral(?). Esta técnica é aplicada em áreas como filtragem de ruído, processamento de imagens e telecomunicações. Uma vantagem proporcionada pela técnica é a representação de uma informação periódica no domínio do tempo em poucos coeficientes no domínio da frequência. Entretanto, características não-periódicas de um sinal, como por exemplo sinais de ocorrência estocástica ou com descontinuidades e singularidades, apresentam uma localização temporal que não é explicitada pela análise na frequência. As ferramentas de análise no domínio misto tempo-frequência permitem o tratamento desse tipo de informação. Uma ferramenta de destaque nas últimas duas décadas é a Transformada Wavelet.
 
 A Transformada Wavelet Contínua (CWT) baseia-se na convolução de um sinal com uma forma de onda localizada no tempo (uma wavelet-mãe) para diferentes valores de dilatação e translação. O resultado da aplicação da transformada é um escalograma que associa essas informações da wavelet-mãe, que podem ser comparadas com uma escala no tempo e na frequência, com sua respectiva correlação com o sinal (?).
 
@@ -47,39 +47,45 @@ A discretização é necessária para a implementação prática da transformada
 
 Uma das principais vantagens da DWT é sua implementação através do algoritmo piramidal proposto por Mallat (?). Este algoritmo permite a construção da análise multiresolução com uma complexidade O(n), o que reduz o tempo de processamento da transformada quando comparada com a Transformada Rápida de Fourier (FFT), cuja complexidade é tipicamente O(nlogn). Além disso, o algoritmo piramidal permite a interpreção da DWT como a aplicação de um banco de filtros sobre um sinal. A cada novo nível o sinal é submetido a um filtro passa-alta, gerando os coeficientes dos detalhes, e a um filtro passa-baixa, gerando os coeficientes das aproximações. As aproximações podem ser dizimadas por um fator 2 e usadas no próximo nível da decomposição até que reste apenas um ponto do sinal. O último nível de decomposição gera um único coeficiente de aproximação que é a média do sinal (?).
 
-Técnicas baseadas em modificações da DWT surgiram como forma de atender a requisitos específicos de cada aplicação. Destaca-se a DWT não-dizimada (UDWT), que remove o passo da dizimação por 2 entre cada nível da DWT. A DWT original não é invariante no tempo, o que é uma propriedade importante para aplicações como processamento de sinais de aúdio. A remoção do passo de dizimação garante a propriedade de invariância no tempo da transformada wavelet em troca de redundância dos coeficientes e aumento da complexidade para O(n logn). Outras técnicas avançadas baseadas na DWT incluem a Wavelet Packet e a Wavelet Biortogonal.
+Técnicas baseadas em modificações da DWT surgiram como forma de atender a requisitos específicos de cada aplicação. Destaca-se a DWT não-dizimada (UDWT), que remove o passo da dizimação por 2 entre cada nível da DWT. A DWT original não é invariante no tempo, o que é uma propriedade importante para aplicações como processamento de sinais de aúdio (?). A remoção do passo de dizimação garante a propriedade de invariância no tempo da transformada wavelet em troca de redundância dos coeficientes e aumento da complexidade para O(n logn). Outras técnicas avançadas baseadas na DWT incluem a Wavelet Packet e a Wavelet Biortogonal.
 
 Mesmo apresentando uma complexidade inferior à FFT, aplicações de tempo real de alto desempenho podem requerer deadlines que não são facilmente atendidos por uma solução em software (?). Para um sistema embarcado, o aumento da capacidade computacional gera custos muitas vezes maior do que a inclusão de uma solução em hardware (?). 
 
 Aplicações em hardware possibilitam melhor desempenho quando comparadas com sua versão em software uma vez que utilizam recursos não-compartilhados e com um grau de abstração muito menor. Além disso, aplicações em hardware lançam mão de uma paralelização intrínseca da plataforma. Uma das possíveis formas de implementar um algoritmo em hardware é utilizando FPGAs (field-programmable gate array, ou arranjos de portas programáveis em campo). Estes são circuitos integrados programáveis em nível lógico por linguagens de descrição de hardware (HDL). FPGAs possibilitam um tempo de desenvolvimento menor quando comparado com hardware de aplicação específica em troca de menor otimização de recursos, o que é refletido em maior potência consumida e menor desempenho. Portanto, FPGAs são uma boa alternativa como ferramenta de hardware para implementação de um algoritmo de análise multi-resolução.
-	
 
-- importância da análise tempo-frequência de sinais
+Um processador de wavelets do tipo Daubechies-6 foi desenvolvido em FPGA em trabalhos anteriores no Laboratório de Metrologia e Computação Industrial (LAMIC). O sistema implementado realiza a transformada wavelet de um sinal de entrada e aplica técnicas de filtragem de ruído baseando-se nos coeficientes da transformada. O sinal é reconstruído utilizando a transformada inversa. O objetivo deste projeto de mestrado é expandir este processador de forma a se tornar parametrizável para diferentes famílias de wavelets. Futuramente, também deseja-se modificar este processador para suportar algoritmos baseados na DWT, como a UDWT. Esta expansão pode tornar o processador mais robusto para atender a um maior número de aplicações além de permitir avaliar o desempenho de diferentes famílias wavelets em hardware com um tempo mínimo de desenvolvimento.
 
-- custo computacional e possibilidade de paralelização
 
-- FPGA como ferramenta de paralelização
 
-- processador wavelet já existente
 
 
 
 
 Revisão da Literatura
-<>
+
+Um dos maiores avanços no estudo de wavelets se deu com a invenção da análise multiresolução a partir de bases ortogonais por (Mallat, 1989). Como mencionado anteriormente, esta análise é implementada utilizando um banco de filtros. Isto tornou a implementação de transformadas wavelet discretas computacionalmente mais eficiente. Além disso, o trabalho de Mallat permitiu que outros pesquisadores desenvolvessem suas próprias famílias de wavelets utilizando a mesma base matemática. Utilizando deste ferramental, a família de wavelets Daubechies foi apresentada em (Daubechies, 1992). Estas wavelets estão entre as mais utilizadas na literatura por terem sidos por atenderem duas condições desejáveis: possuem suporte compacto, ou seja, um número limitado de coeficientes, e possuem um certo número "vanishing moments", tornando as tornam boas em representar comportamento polinomial de um sinal (livro).
+
+Implmentações em hardware da DWT surgiram pouco após a solidificaçãod de sua teoria. 
+
+// falar de arquiteturas de wavelet em hardware vlsi e depois fpga
+
+// falar de aplicações em fpga
+
+// falar de metodos de filtragem
+
+
+
 
 
 Metodologia
 
 Apesar de possibilitar aplicações com alto grau de paralelismo, um mesmo projeto em hardware possui um grau de complexidade e tempo de desenvolvimento maior que sua versão em software. Portanto, todo bom projeto de hardware passa por uma fase de avaliação em software. Todos os algoritmos implementados neste projeto de mestrado serão implementados no software Matlab para sua avaliação e otimização. 
 
-Este trabalho será realizado utilizando uma placa FPGA Kintex-7 KC705 Evaluation Kit da fabricante Xilinx.  O FPGA é programado utilizando o software Vivado Design Suite, que é um ambiente integrado para desenvolvimento e simulação dos FPGAs da fabricante Xilinx através de lingaguens de descrição de hardware (HDL). Uma placa de aquisição de dados de alta performance FMC 150 está acoplada à placa FPGA para a digitalização de dados.
+Este trabalho será realizado utilizando uma placa FPGA Kintex-7 KC705 Evaluation Kit da fabricante Xilinx.  O FPGA é programado utilizando o software Vivado Design Suite, que é um ambiente integrado para desenvolvimento, simulação e programação dos FPGAs da fabricante Xilinx através de lingaguens de descrição de hardware (HDL). Uma placa de aquisição de dados de alta performance FMC 150 está acoplada à placa FPGA para a digitalização de dados.
 
+O processador de wavelets já implementa a transformada wavelet discreta Daubechies-6. A parametrização do processador se dará através de diretivas das lingaguens de descrição de hardware que permitem configuração em tempo de síntese. Espera-se abranger um grande números de famílias wavelets que apresentem estrutura semelhante entre si, mudando-se apenas o número de coeficientes e seus valores. Neste primeiro momento, o procedimento de filtragem do sinal não será alterado. São previstos dois tipos de testes: testes de caixa branca, realizados ao longo do desenvolvimento utilizando o próprio ambiente de simulação do Vivado, e testes de caixa preta para avaliar a integração dos blocos do sistema, utilizando sinais externos injetados na placa de digitalização e avaliando a saída do sistema. Esta parametrização deve levar em conta as otimizações e paralelização já existentes no projeto e, se possível, adicionar novas otimizações no código.
 
-<inserir diagrama de blocos da metodologia, com blocos contendo estudo da bibliografia, proposição de algoritmo, implementacao e testes em software, implementacao e testes em hardware, documentação>
-
-Um dos objetivos do trabalho é aumentar o escopo de projeto de um processador de wavelets implementado em FPGA em trabalhos anteriores.
-
+A implementação de modificações da DWT ocorrerá depois de amplo estudo dos algoritmos alternativos e implementação em software. Dependendo do algoritmo, pode ser necessário apenas modificações estruturais do sistema ou então modificações em baixo nível, como na forma em que o cálculo da transformada é realizado. Por fim, a modificação do método de filtragem utilizando os coeficientes da transformada requer maior tempo de testes em software para avaliação de sua viabilidade em hardware.
 
 
 
